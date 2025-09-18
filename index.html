@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Analysis Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Flight Analysis Dashboard</h1>
+            <p class="subtitle">Comprehensive Analysis of Airline Performance and Flight Delays</p>
+        </header>
+
+        <main>
+            <!-- Overall Performance Section -->
+            <section class="overview-section">
+                <h2>Overall Airline Performance</h2>
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Number of Flights by Airline</h3>
+                        <img src="assets/flights_by_airline.png" alt="Flights by airline" class="chart-image">
+                        <p class="chart-caption">
+                            Distribution of total flights operated by each airline in the dataset.
+                        </p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Delayed Flight Contribution by Airline</h3>
+                        <img src="assets/delayed_flights_by_airline.png" alt="Delayed flights by airline" class="chart-image">
+                        <p class="chart-caption">
+                            Each airline's contribution to the total number of delayed flights.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Airline Analysis -->
+            <section class="interactive-section">
+                <h2>Airline-Specific Analysis</h2>
+                <div class="controls">
+                    <label for="airline-select">Select Airline:</label>
+                    <select id="airline-select">
+                        <option value="">Choose an airline...</option>
+                    </select>
+                </div>
+                
+                <div id="airline-charts" class="airline-charts-grid" style="display: none;">
+                    <div class="chart-container">
+                        <h3 id="routes-title">Most Common Travel Routes</h3>
+                        <img id="routes-chart" src="" alt="Common routes" class="chart-image">
+                        <p class="chart-caption">
+                            Top travel routes (direction-independent) for the selected airline.
+                        </p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3 id="hubs-title">Largest Hubs</h3>
+                        <img id="hubs-chart" src="" alt="Airline hubs" class="chart-image">
+                        <p class="chart-caption">
+                            Airports with the most originating flights for the selected airline.
+                        </p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3 id="worst-title">Most Delayed Origins</h3>
+                        <img id="worst-chart" src="" alt="Most delayed origins" class="chart-image">
+                        <p class="chart-caption">
+                            Origin airports with the highest average delays for the selected airline.
+                        </p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3 id="best-title">Best Performing Origins</h3>
+                        <img id="best-chart" src="" alt="Best performing origins" class="chart-image">
+                        <p class="chart-caption">
+                            Origin airports with the lowest average delays for the selected airline.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Delay Distributions -->
+            <section class="distributions-section">
+                <h2>Delay Time Distributions</h2>
+                
+                <div class="chart-container large">
+                    <h3>Top 5 Airlines: Delay Distribution Patterns</h3>
+                    <img src="assets/airline_delay_distributions.png" alt="Airline delay distributions" class="chart-image">
+                    <p class="chart-caption">
+                        Histogram analysis of delay times for the five largest airlines, showing distribution patterns 
+                        and mean delay times. Most flights experience minimal delays, with long-tail distributions 
+                        indicating occasional significant delays.
+                    </p>
+                </div>
+                
+                <div class="chart-container large">
+                    <h3>Airport Performance: Best vs Worst</h3>
+                    <img src="assets/airport_delay_distributions.png" alt="Airport delay distributions" class="chart-image">
+                    <p class="chart-caption">
+                        Comparison of delay distributions between the best and worst performing airports. 
+                        Top row shows airports with highest average delays, bottom row shows best performers.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Machine Learning Classification -->
+            <section class="ml-section">
+                <h2>Delay Prediction Models</h2>
+                <div class="ml-container">
+                    <div class="chart-container large">
+                        <h3>KNN vs SVM Classification Performance</h3>
+                        <img src="assets/classification_comparison.png" alt="Classification comparison" class="chart-image">
+                        <p class="chart-caption">
+                            Comparison of K-Nearest Neighbors and Support Vector Machine algorithms for predicting 
+                            flights with delays exceeding 20 minutes. Models evaluated using cross-validation 
+                            and independent test set performance.
+                        </p>
+                    </div>
+                    
+                    <div class="ml-results">
+                        <h3>Model Performance Summary</h3>
+                        <div class="results-grid" id="classification-results">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Insights Section -->
+            <section class="insights-section">
+                <h2>Key Insights</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Airline Performance Variability</h3>
+                        <p>
+                            Delay rates vary significantly across airlines, ranging from approximately 20% to 35%. 
+                            This variation suggests operational efficiency differences and potential areas for improvement.
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Hub Airport Impact</h3>
+                        <p>
+                            Major hub airports tend to experience higher delay rates due to increased traffic volume 
+                            and complexity of operations. Smaller airports often demonstrate better on-time performance.
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Seasonal and Time Patterns</h3>
+                        <p>
+                            Delay patterns show clear seasonal variations and time-of-day effects, with peak travel 
+                            times and weather-sensitive months showing increased delay frequency and duration.
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <h3>Predictive Modeling Results</h3>
+                        <p>
+                            Machine learning models achieve reasonable accuracy in predicting significant delays, 
+                            with SVM slightly outperforming KNN. Route, time, and airline factors are key predictors.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Analysis based on synthetic flight data demonstrating data science and machine learning techniques for airline performance evaluation.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>Airline Performance (Frequency of Delays)</h3>
+                        <img src="assets/airline_performance.png" alt="Airline delay frequency" class="chart-image">
+                        <p class="chart-caption">
+                            Airlines ranked by delay rate, showing proportion of flights delayed more than 15 minutes.
+                        </p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>
