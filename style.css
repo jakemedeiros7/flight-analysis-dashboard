@@ -76,6 +76,54 @@ h2::after {
     background: #e74c3c;
 }
 
+/* Airline Key Section */
+.airline-key-section {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    margin-bottom: 40px;
+    border-left: 5px solid #f39c12;
+}
+
+.airline-key-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.key-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.key-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+    border-color: #3498db;
+}
+
+.airline-code {
+    background: #3498db;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    min-width: 40px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.airline-name {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
 h3 {
     font-size: 1.4rem;
     font-weight: 600;

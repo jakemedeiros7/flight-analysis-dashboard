@@ -154,14 +154,20 @@ class FlightAnalysis:
                                          labels=airline_stats.index,
                                          autopct='%1.1f%%',
                                          colors=colors,
-                                         startangle=90)
+                                         startangle=90,
+                                         textprops={'fontsize': 14, 'fontweight': 'bold'})
         
-        ax.set_title('Number of Flights by Airline', fontsize=14, fontweight='bold', pad=20)
+        ax.set_title('Number of Flights by Airline', fontsize=16, fontweight='bold', pad=20)
         
-        # Enhance text
+        # Enhance text with larger fonts
+        for text in texts:
+            text.set_fontsize(16)
+            text.set_fontweight('bold')
+            
         for autotext in autotexts:
             autotext.set_color('white')
             autotext.set_fontweight('bold')
+            autotext.set_fontsize(14)
         
         plt.tight_layout()
         plt.savefig('assets/flights_by_airline.png', dpi=150, bbox_inches='tight', facecolor='white')
@@ -224,16 +230,19 @@ class FlightAnalysis:
             bars = ax.bar(range(len(hub_counts)), hub_counts.values, 
                          color='#7fb069', alpha=0.8)
             ax.set_xticks(range(len(hub_counts)))
-            ax.set_xticklabels(hub_counts.index, rotation=45)
-            ax.set_ylabel('Number of Originating Flights', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Airport', fontsize=12, fontweight='bold')
-            ax.set_title(f'{airline}: Largest Hubs', fontsize=14, fontweight='bold')
+            ax.set_xticklabels(hub_counts.index, rotation=45, fontsize=14, fontweight='bold')
+            ax.set_ylabel('Number of Originating Flights', fontsize=14, fontweight='bold')
+            ax.set_xlabel('Airport', fontsize=14, fontweight='bold')
+            ax.set_title(f'{airline}: Largest Hubs', fontsize=16, fontweight='bold')
             ax.grid(axis='y', alpha=0.3)
+            
+            # Make y-axis labels larger
+            ax.tick_params(axis='y', labelsize=12)
             
             for i, bar in enumerate(bars):
                 height = bar.get_height()
                 ax.text(bar.get_x() + bar.get_width()/2, height + max(hub_counts.values) * 0.01,
-                       f'{int(height)}', ha='center', va='bottom', fontweight='bold')
+                       f'{int(height)}', ha='center', va='bottom', fontweight='bold', fontsize=12)
             
             plt.tight_layout()
             plt.savefig(f'assets/{airline}_hubs.png', dpi=150, bbox_inches='tight', facecolor='white')
@@ -268,16 +277,20 @@ class FlightAnalysis:
             bars = ax.bar(range(len(origin_delays_best)), origin_delays_best.values, 
                          color='#27ae60', alpha=0.8)
             ax.set_xticks(range(len(origin_delays_best)))
-            ax.set_xticklabels(origin_delays_best.index, rotation=45)
-            ax.set_ylabel('Average Delay (minutes)', fontsize=12, fontweight='bold')
-            ax.set_xlabel('Origin Airport', fontsize=12, fontweight='bold')
-            ax.set_title(f'{airline}: Best Performing Origins', fontsize=14, fontweight='bold')
+            ax.set_xticklabels(origin_delays_best.index, rotation=45, fontsize=14, fontweight='bold')
+            ax.set_ylabel('Average Delay (minutes)', fontsize=14, fontweight='bold')
+            ax.set_xlabel('Origin Airport', fontsize=14, fontweight='bold')
+            ax.set_title(f'{airline}: Best Performing Origins', fontsize=16, fontweight='bold')
             ax.grid(axis='y', alpha=0.3)
+            
+            # Make y-axis labels larger
+            ax.tick_params(axis='y', labelsize=12)
             
             for i, bar in enumerate(bars):
                 height = bar.get_height()
                 ax.text(bar.get_x() + bar.get_width()/2, height + abs(min(origin_delays_best.values)) * 0.1,
-                       f'{height:.1f}', ha='center', va='bottom' if height >= 0 else 'top', fontweight='bold')
+                       f'{height:.1f}', ha='center', va='bottom' if height >= 0 else 'top', 
+                       fontweight='bold', fontsize=12)
             
             plt.tight_layout()
             plt.savefig(f'assets/{airline}_best_origins.png', dpi=150, bbox_inches='tight', facecolor='white')
